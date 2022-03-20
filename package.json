@@ -1,0 +1,20 @@
+{
+  "name": "membrane-demo",
+  "version": "1.0.0",
+  "description": "automated tests for membrane web",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "qa",
+    "challenge",
+    "membrane",
+    "web"
+  ],
+  "author": "Nicolas Lopez",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^9.5.2"
+  }
+}
