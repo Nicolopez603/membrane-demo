@@ -4,7 +4,6 @@ import signInPage from '../support/pages/signInPage';
 describe('Test suite at sign-in',function(){
     beforeEach(function(){
         cy.visit('demo.membrane.trade/sign-in')
-
         cy.fixture('userCredentials')
         .then(credentials =>{
             this.credentials = credentials;
@@ -19,7 +18,7 @@ describe('Test suite at sign-in',function(){
     it('Validating that logo and title is visible',function(){
         signInPage.elements.membraneLogo()
         .should('be.visible');
-       
+        
         signInPage.elements.membraneTitle()
         .should('have.text','Membrane')
     }); 
@@ -38,7 +37,6 @@ describe('Test suite at sign-in',function(){
         signInPage.elements.passwordInput()
         .should('have.attr', 'placeholder', 'Insert your password');
    });
-
         
     it('Validating that Eye(svg) element at the end on the password field',function(){
         signInPage.elements.eyePass()
@@ -58,10 +56,9 @@ describe('Test suite at sign-in',function(){
         .should('be.visible')
     });
 
-
     it('Validating the next button is inactive',function(){
         cy.readFile('cypress/fixtures/userCredentials.json').then(credentials =>{
-        signInPage.typeEmail(credentials.emailValid)}).then(()=>{
+        signInPage.typeEmail(this.credentials.emailValid)}).then(()=>{
         
         signInPage.elements.nextButtonDisabled()
         .should('be.disabled')
@@ -83,10 +80,9 @@ describe('Test suite at sign-in',function(){
        .should('have.text', 'Invalid email format')
     });
 
-
     it('Validating the "Next" button is active using email and username',function(){
         cy.readFile('cypress/fixtures/userCredentials.json').then(credentials =>{
-        signInPage.typeEmail(credentials.emailValid)}).then(()=>{
+        signInPage.typeEmail(this.credentials.emailValid)}).then(()=>{
         
         signInPage.typePassword(this.credentials.password)
         
@@ -97,7 +93,7 @@ describe('Test suite at sign-in',function(){
         
     it('Validating the “Wrong email or password, try again.” on popup message',function(){
         cy.readFile('cypress/fixtures/userCredentials.json').then(credentials =>{
-        signInPage.typeEmail(credentials.emailValid)}).then(()=>{
+        signInPage.typeEmail(this.credentials.emailValid)}).then(()=>{
         
         signInPage.typePassword(this.credentials.passwordInvalid)
        
@@ -110,7 +106,7 @@ describe('Test suite at sign-in',function(){
 
     it('Making a successful login',function(){
         cy.readFile('cypress/fixtures/userCredentials.json').then(credentials =>{
-        signInPage.typeEmail(credentials.emailValid)}).then(()=>{
+        signInPage.typeEmail(this.credentials.emailValid)}).then(()=>{
         
         signInPage.typePassword(this.credentials.password)
        
@@ -118,4 +114,4 @@ describe('Test suite at sign-in',function(){
        
     });
     });
-});
+    });
