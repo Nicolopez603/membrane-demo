@@ -4,7 +4,11 @@
   "description": "automated tests for membrane web",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "cypress:open": "cypress open",
+    "cypress:runDefault": "cypress runDefault",
+    "cypress:runChrome": "cypress run --browser chrome --spec cypress/integration/*.spec.js",
+    "cypress:run": "cypress run --headless --browser chrome --spec cypress/integration/*.spec.js -record --key e353b6be-a039-4433-8a35-72536ada6d5e"
   },
   "keywords": [
     "qa",

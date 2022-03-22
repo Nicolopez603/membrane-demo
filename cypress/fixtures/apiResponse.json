@@ -1,0 +1,10 @@
+{   
+    "statusCode": 200,
+    "body":
+    {"statusCode":401,
+    "error":{
+    "source":"LATTICE_API",
+    "code":401,
+    "message":"Wrong email or password, try again."}
+}
+}
