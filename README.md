@@ -37,14 +37,8 @@ npm install
 3 - You can choose to open GUI Tests or Headless tests, to run with GUI Test, type the following command, and after this, choose what spec you want to run:
 
 ```
-npm run open
+npx cypress open
 
 ```
 
-4 - To run Headless Mode, type:
-
-```
-npm run cypress:run
-
-```
 
