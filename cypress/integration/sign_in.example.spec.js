@@ -60,19 +60,30 @@ describe("Test suite at sign-in", function () {
   });
 
   it("Validating the error message This field is required", function () {
-    signInPage.clickNextButton();
-
+    cy.readFile("cypress/fixtures/userCredentials.json")
+      .then((credentials) => {
+        signInPage.typeEmail(this.credentials.emailValid);
+      })
+      .clear()
+      .then(() => {
+        signInPage.typePassword(this.credentials.passwordValid);
+      })
+      .clear();
     signInPage.elements
       .alertFieldRequired()
       .should("have.text", "This field is requiredThis field is required");
   });
 
   it("Validating the alert contain “Invalid email format”", function () {
-    signInPage.elements.emailInput().type("nn!@asd.n");
-
-    signInPage.elements
-      .alertInvalidEmail()
-      .should("have.text", "Invalid email format");
+    cy.readFile("cypress/fixtures/userCredentials.json")
+      .then((credentials) => {
+        signInPage.typeEmail(this.credentials.emailInvalid);
+      })
+      .then(() => {
+        signInPage.elements
+          .alertInvalidEmail()
+          .should("have.text", "Invalid email format");
+      });
   });
 
   it('Validating the "Next" button is active using email and username', function () {
@@ -81,7 +92,7 @@ describe("Test suite at sign-in", function () {
         signInPage.typeEmail(this.credentials.emailValid);
       })
       .then(() => {
-        signInPage.typePassword(this.credentials.password);
+        signInPage.typePassword(this.credentials.passwordValid);
 
         signInPage.elements.nextButton().should("not.be.disabled");
       });
@@ -90,7 +101,7 @@ describe("Test suite at sign-in", function () {
   it("Validating the “Wrong email or password, try again.” on popup message", function () {
     cy.readFile("cypress/fixtures/userCredentials.json")
       .then((credentials) => {
-        signInPage.typeEmail(this.credentials.emailValid);
+        signInPage.typeEmail(this.credentials.emailIncorrect);
       })
       .then(() => {
         signInPage.typePassword(this.credentials.passwordInvalid);
@@ -109,7 +120,7 @@ describe("Test suite at sign-in", function () {
         signInPage.typeEmail(this.credentials.emailValid);
       })
       .then(() => {
-        signInPage.typePassword(this.credentials.password);
+        signInPage.typePassword(this.credentials.passwordValid);
 
         signInPage.clickNextButton();
       });
