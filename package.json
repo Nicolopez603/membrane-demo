@@ -8,8 +8,8 @@
     "cypress:open": "cypress open",
     "cypress:runDefault": "cypress runDefault",
     "cypress:runChrome": "cypress run --browser chrome --spec cypress/integration/*.spec.js",
-    "cypress:run": "cypress run --headless --browser chrome --spec cypress/integration/*.spec.js -record --key a3066d0b-a69f-488f-8e26-52cdc486357c",
-    "cypress:runHeadless": "cypress run --headless --browser chrome --spec cypress/integration/*.spec.js"
+    "cypress:run": "cypress run --headless --browser electron --spec cypress/integration/*.spec.js -record --key a3066d0b-a69f-488f-8e26-52cdc486357c",
+    "cypress:runHeadless": "cypress run --headless --browser electron --spec cypress/integration/*.spec.js"
   },
   "keywords": [
     "qa",
