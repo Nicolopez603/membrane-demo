@@ -93,24 +93,18 @@ describe("Test suite at sign-up", function () {
   });
 
   it('Validating all the fields with real data and the button "Next" is active', function () {
-    signUpPage.typeFirstName(this.credentials.firstName);
-
-    signUpPage.typeLastName(this.credentials.lastName);
-
-    signUpPage.elements.countryInput().click({ force: true });
-
-    signUpPage.elements.selectableList().click();
-
-    signUpPage.typeNumber(this.credentials.phoneNumber);
-
     cy.readFile("cypress/fixtures/userCredentials.json")
-      .then((credentials) => {
-        signUpPage.typeEmail(this.credentials.emailValid);
-      })
-      .then(() => {
-        signUpPage.elements.buttonNextActivate().should("not.be.disabled");
-
-        signUpPage.elements.buttonNextActivate().click();
-      });
+    .then((credentials) => {
+      signUpPage.typeEmail(this.credentials.emailValid);
+      signUpPage.typeFirstName(this.credentials.firstName);
+      signUpPage.typeLastName(this.credentials.lastName);
+      signUpPage.typeNumber(this.credentials.phoneNumber);
+    })
+    .then(() => {
+      signUpPage.elements.countryInput().click({ force: true });
+      signUpPage.elements.selectableList().click();
+      signUpPage.elements.buttonNextActivate().should("not.be.disabled");
+      signUpPage.elements.buttonNextActivate().click();
+    });
   });
 });
